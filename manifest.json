@@ -1,0 +1,31 @@
+{
+	"description": "some description",
+	"manifest_version": 2,
+	"name": "Site Accessibility Tester",
+	"version": "1.0",
+	"icons": {
+		"48": "icons/site_tester_48.png"
+	},
+
+	"permissions": [
+		"activeTab"
+	],
+
+	"browser_action": {
+		"default_icon": "icons/site_tester_32.png",
+		"theme_icons": [{
+			"light": "icons/site_tester_32_light.png",
+			"dark": "icons/site_tester_32.png",
+			"size": 32
+		}],
+		"default_title": "Site Accessibility Tester",
+		"default_popup": "popup/choose_test.html"
+	},
+
+	"web_accessible_resources": [
+		"beasts/frog.jpg",
+		"beasts/turtle.jpg",
+		"beasts/snake.jpg"
+	]
+
+}
