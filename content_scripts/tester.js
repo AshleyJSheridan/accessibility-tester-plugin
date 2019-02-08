@@ -17,6 +17,22 @@
 			runTest(message.testName);
 		}
 	});
+	
+	self.test_videos = function() {
+		let videos = document.querySelectorAll('video');
+		let failedVideos = [];
+		
+		for(i=0; i<videos.length; i++) {
+			let video = videos[i];
+			let track = video.querySelectorAll('track[kind=subtitles], track[kind=captions], track[kind=descriptions]');
+			
+			if(track.length === 0) {
+				failedVideos.push(video);
+			}
+		}
+		
+		showFailures(failedVideos, 'Some videos have no tracks marked as captions, subtitles, or a description');
+	}
 
 	self.test_images = function() {
 		let images = document.querySelectorAll('img');

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+	</head>
+	<body>
+		<section>
+			<h1>Fail Tests</h1>
+			
+			<video>
+				<source src="some_video.mp4" type="video/mp4">
+			</video>
+			<video>
+				<source src="some_video.mp4" type="video/mp4">
+				<track label="Chapters" kind="chapters" srclang="en" src="some_video_subtitles.vtt" default>
+			</video>
+			<video>
+				<source src="some_video.mp4" type="video/mp4">
+				<track kind="metadata" src="some_video_subtitles.vtt" default>
+			</video>
+		</section>
+		<section>
+			<h1>Passing Tests</h1>
+			<video>
+				<source src="some_video.mp4" type="video/mp4">
+				<track label="English" kind="subtitles" srclang="en" src="some_video_subtitles.vtt" default>
+			</video>
+		</section>
+		
+	</body>
+</html>
