@@ -7,7 +7,7 @@
 	function runTest(testName) {
 		let testFunction = `test_${testName}`;
 		
-		if(typeof window[testFunction] == 'function') {
+		if(typeof window[testFunction] === 'function') {
 			window[testFunction]();
 		}
 	}
@@ -29,15 +29,9 @@
 			let altText = image.getAttribute('alt');
 			
 			if(altText === null) {
-				// check here to see if the image is part of a <figure> and has a <figcaption>
-				let parentFigureNode = isDescendantOfType(image, 'figure');
-				let childFigCaptionNode = hasDescendantOfType(parentFigureNode, 'figcaption');
+				let childFigCaptionNode = getCousinOfType(image, 'figure', 'figcaption');
 				
-				if(parentFigureNode === false || childFigCaptionNode === false) {
-					failedImages.push(image);
-				} 
-				
-				if(childFigCaptionNode && childFigCaptionNode.innerText.length === 0) {
+				if(childFigCaptionNode === false || (childFigCaptionNode && childFigCaptionNode.innerText.length === 0)) {
 					failedImages.push(image);
 				}
 			} else {
@@ -51,7 +45,17 @@
 		showWarnings(warnImages, `Some images have empty alt text and are larger than the threshold of ${emptyAltDimensionThreshold} pixels`);
 	}
 	
-	function isDescendantOfType(childNode, type) {
+	function getCousinOfType(node, parentType, childType) {
+		let parentNode = getParentOfType(node, parentType);
+		let childNode = getDescendantOfType(parentNode, childType);
+		
+		if(parentNode && childNode)
+			return childNode;
+		
+		return false;
+	}
+	
+	function getParentOfType(childNode, type) {
 		var node = childNode.parentNode;
 
 		while (node !== null && node.tagName !== undefined) {
@@ -63,7 +67,7 @@
 		return false;
 	}
 	
-	function hasDescendantOfType(parentNode, type) {
+	function getDescendantOfType(parentNode, type) {
 		if(!parentNode)
 			return false;
 		
