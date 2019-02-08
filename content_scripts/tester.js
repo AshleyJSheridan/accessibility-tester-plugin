@@ -18,20 +18,32 @@
 		}
 	});
 	
-	self.test_videos = function() {
-		let videos = document.querySelectorAll('video');
-		let failedVideos = [];
+	self.test_audio = function() {
+		failedAudios = getFailingMultimediaElements('audio');
 		
-		for(i=0; i<videos.length; i++) {
-			let video = videos[i];
-			let track = video.querySelectorAll('track[kind=subtitles], track[kind=captions], track[kind=descriptions]');
+		showFailures(failedAudios, 'Some audio elements have no tracks marked as captions, subtitles, or a description');
+	}
+
+	self.test_videos = function() {
+		failedVideos = getFailingMultimediaElements('video');
+		
+		showFailures(failedVideos, 'Some videos have no tracks marked as captions, subtitles, or a description');
+	}
+	
+	function getFailingMultimediaElements(mediaType) {
+		let multimediaElements = document.querySelectorAll(mediaType);
+		let failingElements = [];
+		
+		for(i=0; i<multimediaElements.length; i++) {
+			let multimediaElement = multimediaElements[i];
+			let track = multimediaElement.querySelectorAll('track[kind=subtitles], track[kind=captions], track[kind=descriptions]');
 			
 			if(track.length === 0) {
-				failedVideos.push(video);
+				failingElements.push(multimediaElement);
 			}
 		}
 		
-		showFailures(failedVideos, 'Some videos have no tracks marked as captions, subtitles, or a description');
+		return failingElements;
 	}
 
 	self.test_images = function() {

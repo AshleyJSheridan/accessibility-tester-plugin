@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+	</head>
+	<body>
+		<section>
+			<h1>Fail Tests</h1>
+			
+			<audio>
+				<source src="some_audio.mp4" type="audio/mp4">
+			</audio>
+			<audio>
+				<source src="some_audio.mp4" type="audio/mp4">
+				<track label="Chapters" kind="chapters" srclang="en" src="some_audio_subtitles.vtt" default>
+			</audio>
+			<audio>
+				<source src="some_audio.mp4" type="audio/mp4">
+				<track kind="metadata" src="some_audio_subtitles.vtt" default>
+			</audio>
+		</section>
+		<section>
+			<h1>Passing Tests</h1>
+			<audio>
+				<source src="some_audio.mp4" type="audio/mp4">
+				<track label="English" kind="subtitles" srclang="en" src="some_audio_subtitles.vtt" default>
+			</audio>
+		</section>
+		
+	</body>
+</html>
