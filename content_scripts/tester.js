@@ -28,39 +28,63 @@
 			let image = images[i];
 			let altText = image.getAttribute('alt');
 			
-			if(altText == null) {
+			if(altText === null) {
 				// check here to see if the image is part of a <figure> and has a <figcaption>
 				let parentFigureNode = isDescendantOfType(image, 'figure');
-				if(!parentFigureNode) {
+				let childFigCaptionNode = hasDescendantOfType(parentFigureNode, 'figcaption');
+				
+				if(parentFigureNode === false || childFigCaptionNode === false) {
 					failedImages.push(image);
-				} else {
-					// check here to see if this <figure> has a <figcaption> child
+				} 
+				
+				if(childFigCaptionNode && childFigCaptionNode.innerText.length === 0) {
+					failedImages.push(image);
 				}
-			}
-			
-			if(altText == '' && image.width > emptyAltDimensionThreshold && image.height > emptyAltDimensionThreshold) {
-				warnImages.push(image);
+			} else {
+				if(altText === '' && image.width > emptyAltDimensionThreshold && image.height > emptyAltDimensionThreshold) {
+					warnImages.push(image);
+				}
 			}
 		}
 		
-		if(failedImages.length) {
-			console.error('Some images have no alt text and were not found with a corresponding <figcaption>');
-			console.table(failedImages);
-		}
-		if(warnImages.length) {
-			console.warn(`Some images have empty alt text and are larger than the threshold of ${emptyAltDimensionThreshold} pixels`);
-			console.table(warnImages);
-		}
+		showFailures(failedImages, 'Some images have no alt text and were not found with a corresponding <figcaption>');
+		showWarnings(warnImages, `Some images have empty alt text and are larger than the threshold of ${emptyAltDimensionThreshold} pixels`);
 	}
 	
 	function isDescendantOfType(childNode, type) {
 		var node = childNode.parentNode;
-		while (node != null) {
-			if (node == type) {
+
+		while (node !== null && node.tagName !== undefined) {
+			if (node.tagName.toLowerCase() === type) {
 				return node;
 			}
 			node = node.parentNode;
 		}
 		return false;
+	}
+	
+	function hasDescendantOfType(parentNode, type) {
+		if(!parentNode)
+			return false;
+		
+		node = parentNode.querySelector(type);
+		if(node !== null)
+			return node;
+		
+		return false;
+	}
+	
+	function showFailures(failureList, failureMessage) {
+		if(failureList.length) {
+			console.error(failureMessage);
+			console.table(failureList);
+		}
+	}
+	
+	function showWarnings(warningList, warningMessage) {
+		if(warningList.length) {
+			console.warn(warningMessage);
+			console.table(warningList);
+		}
 	}
 })();
