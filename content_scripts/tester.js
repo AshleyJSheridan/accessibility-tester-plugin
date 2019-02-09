@@ -19,7 +19,7 @@
 	});
 	
 	self.test_form_element_labels = function() {
-		let inputs = document.querySelectorAll("input:not([type=submit]):not([type=reset]):not([type=button]), select, textarea");
+		let inputs = document.querySelectorAll("input:not([type=submit]):not([type=reset]):not([type=button]):not([type=hidden]), select, textarea");
 		let failedInputs = [];
 		
 		for(i=0; i<inputs.length; i++) {
