@@ -7,7 +7,7 @@
 	function runTest(testName) {
 		let testFunction = `test_${testName}`;
 		
-		if(typeof window[testFunction] === 'function') {
+		if(typeof window[testFunction] === "function") {
 			window[testFunction]();
 		}
 	}
@@ -18,8 +18,24 @@
 		}
 	});
 	
+	self.test_bold_tags = function() {
+		let boldTags = document.querySelectorAll("b");
+		
+		if(boldTags.length) {
+			showFailures(Array.from(boldTags), "Bold (<b>) tags used, <strong> is more semantic");
+		}
+	}
+	
+	self.test_italic_tags = function() {
+		let italicTags = document.querySelectorAll("i");
+		
+		if(italicTags.length) {
+			showFailures(Array.from(italicTags), "Italic (<i>) tags used, <em> is more semantic");
+		}
+	}
+	
 	self.test_heading_levels = function() {
-		let headings = document.querySelectorAll('h1, h2, h3, h4, h5, h6');
+		let headings = document.querySelectorAll("h1, h2, h3, h4, h5, h6");
 		let failedHeadings = [];
 		let lastHeadingLevel = 0;
 		
@@ -40,33 +56,33 @@
 			}
 		}
 		
-		showFailures(failedHeadings, 'Headings are not following a logical hierarchy');
+		showFailures(failedHeadings, "Headings are not following a logical hierarchy");
 	}
 	
 	self.test_audio = function() {
 		let failedAudios = getFailingMultimediaElements('audio');
 		
-		showFailures(failedAudios, 'Some audio elements have no tracks marked as captions, subtitles, or a description');
+		showFailures(failedAudios, "Some audio elements have no tracks marked as captions, subtitles, or a description");
 	}
 
 	self.test_videos = function() {
 		let failedVideos = getFailingMultimediaElements('video');
 		
-		showFailures(failedVideos, 'Some videos have no tracks marked as captions, subtitles, or a description');
+		showFailures(failedVideos, "Some videos have no tracks marked as captions, subtitles, or a description");
 	}
 	
 	self.test_images = function() {
-		let images = document.querySelectorAll('img');
+		let images = document.querySelectorAll("img");
 		let failedImages = [];
 		let warnImages = [];
 		let emptyAltDimensionThreshold = 100;
 		
 		for(i=0; i<images.length; i++) {
 			let image = images[i];
-			let altText = image.getAttribute('alt');
+			let altText = image.getAttribute("alt");
 			
 			if(altText === null) {
-				let childFigCaptionNode = getCousinOfType(image, 'figure', 'figcaption');
+				let childFigCaptionNode = getCousinOfType(image, "figure", "figcaption");
 				
 				if(childFigCaptionNode === false || (childFigCaptionNode && childFigCaptionNode.innerText.length === 0)) {
 					failedImages.push(image);
@@ -78,7 +94,7 @@
 			}
 		}
 		
-		showFailures(failedImages, 'Some images have no alt text and were not found with a corresponding <figcaption>');
+		showFailures(failedImages, "Some images have no alt text and were not found with a corresponding <figcaption>");
 		showWarnings(warnImages, `Some images have empty alt text and are larger than the threshold of ${emptyAltDimensionThreshold} pixels`);
 	}
 	
@@ -94,7 +110,7 @@
 		
 		for(i=0; i<multimediaElements.length; i++) {
 			let multimediaElement = multimediaElements[i];
-			let track = multimediaElement.querySelectorAll('track[kind=subtitles], track[kind=captions], track[kind=descriptions]');
+			let track = multimediaElement.querySelectorAll("track[kind=subtitles], track[kind=captions], track[kind=descriptions]");
 			
 			if(track.length === 0) {
 				failingElements.push(multimediaElement);
