@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+	</head>
+	<body>
+		<section>
+			<h1>Fail Tests</h1>
+			
+			<fieldset>
+				<legend>Elements that have no labels</legend>
+				
+				Text input <input type="text"/>
+				Checkbox input <input type="checkbox"/>
+				Radio input <input type="radio"/>
+				Date input <input type="date"/>
+				Colour input <input type="color"/>
+				Email input <input type="email"/>
+				File input <input type="file"/>
+				Month input <input type="month"/>
+				Number input <input type="number"/>
+				Password input <input type="password"/>
+				Select element 
+					<select>
+						<option>Option</option>
+					</select>
+				
+				Textarea <textarea></textarea>
+			</fieldset>
+			
+			<fieldset>
+				<legend>Elements that have unassociated labels</legend>
+				
+				<label >Text input</label>
+				<input type="text" />
+				
+				<label >Checkbox input</label>
+				<input type="checkbox" />
+
+				<label >Radio input</label>
+				<input type="radio" />
+
+				<label >Date input</label>
+				<input type="date" />
+
+				<label >Colour input</label>
+				<input type="color" />
+
+				<label >Email input</label>
+				<input type="email" />
+
+				<label >File input</label>
+				<input type="file" />
+
+				<label >Month input</label>
+				<input type="month" />
+
+				<label >Number input</label>
+				<input type="number" />
+
+				<label >Password input</label>
+				<input type="password" />
+
+				<label >Select element</label>
+				<select >
+					<option>Option</option>
+				</select>
+				
+				<label >Textarea</label>
+				<textarea ></textarea>
+			</fieldset>
+		</section>
+		
+		<section>
+			<h1>Passing Tests</h1>
+			
+			<fieldset>
+				<legend>Elements that have wrapping labels</legend>
+				
+				<label>Text input <input type="text"/></label>
+				<label>Checkbox input <input type="checkbox"/></label>
+				<label>Radio input <input type="radio"/></label>
+				<label>Date input <input type="date"/></label>
+				<label>Colour input <input type="color"/></label>
+				<label>Email input <input type="email"/></label>
+				<label>File input <input type="file"/></label>
+				<label>Month input <input type="month"/></label>
+				<label>Number input <input type="number"/></label>
+				<label>Password input <input type="password"/></label>
+				<label>Select element 
+					<select>
+						<option>Option</option>
+					</select>
+				</label>
+				<label>Textarea <textarea></textarea></label>
+			</fieldset>
+			
+			<fieldset>
+				<legend>Elements that have associated labels</legend>
+				
+				<label for="text_input">Text input</label>
+				<input type="text" id="text_input"/>
+				
+				<label for="checkbox_input">Checkbox input</label>
+				<input type="checkbox" id="checkbox_input"/>
+
+				<label for="radio_input">Radio input</label>
+				<input type="radio" id="radio_input"/>
+
+				<label for="date_input">Date input</label>
+				<input type="date" id="date_input"/>
+
+				<label for="color_input">Colour input</label>
+				<input type="color" id="color_input"/>
+
+				<label for="email_input">Email input</label>
+				<input type="email" id="email_input"/>
+
+				<label for="file_input">File input</label>
+				<input type="file" id="file_input"/>
+
+				<label for="month_input">Month input</label>
+				<input type="month" id="month_input"/>
+
+				<label for="number_input">Number input</label>
+				<input type="number" id="number_input"/>
+
+				<label for="password_input">Password input</label>
+				<input type="password" id="password_input"/>
+
+				<label for="select_input">Select element</label>
+				<select id="select_input">
+					<option>Option</option>
+				</select>
+				
+				<label for="textarea_input">Textarea</label>
+				<textarea id="textarea_input"></textarea>
+			</fieldset>
+			
+			<fieldset>
+				<legend>Elements that do not require labels</legend>
+				
+				<input type="submit"/>
+				<input type="reset"/>
+				<input type="button" value="button"/>
+				<button>button</button>
+			</fieldset>
+		</section>
+	</body>
+</html>

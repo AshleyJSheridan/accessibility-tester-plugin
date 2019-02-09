@@ -18,6 +18,25 @@
 		}
 	});
 	
+	self.test_form_element_labels = function() {
+		let inputs = document.querySelectorAll("input:not([type=submit]):not([type=reset]):not([type=button]), select, textarea");
+		let failedInputs = [];
+		
+		for(i=0; i<inputs.length; i++) {
+			let input = inputs[i];
+			
+			let parentLabel = getParentOfType(input, "label");
+			let inputId = input.getAttribute("id");
+			let associatedLabel = getElementWithAttributeValue("label", "for", inputId);
+			
+			if(!parentLabel && !associatedLabel) {
+				failedInputs.push(input);
+			}
+		}
+		
+		showFailures(failedInputs, "Input elements don't have associated labels");
+	}
+	
 	self.test_bold_tags = function() {
 		let boldTags = document.querySelectorAll("b");
 		
@@ -96,6 +115,15 @@
 		
 		showFailures(failedImages, "Some images have no alt text and were not found with a corresponding <figcaption>");
 		showWarnings(warnImages, `Some images have empty alt text and are larger than the threshold of ${emptyAltDimensionThreshold} pixels`);
+	}
+	
+	function getElementWithAttributeValue(elementType, attribute, attributeValue) {
+		if(attributeValue === null)
+			return false;
+		
+		let element = document.querySelector(`${elementType}[${attribute}=${attributeValue}]`);
+		
+		return element;
 	}
 	
 	function getHeadingLevel(heading) {
