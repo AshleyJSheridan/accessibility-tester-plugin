@@ -18,34 +18,43 @@
 		}
 	});
 	
+	self.test_heading_levels = function() {
+		let headings = document.querySelectorAll('h1, h2, h3, h4, h5, h6');
+		let failedHeadings = [];
+		let lastHeadingLevel = 0;
+		
+		if(headings.length === 0) {
+			showSingleFailure("Page has no headings");
+		}
+		
+		for(i=0; i<headings.length; i++) {
+			let heading = headings[i];
+			let currentHeadingLevel = getHeadingLevel(heading);
+			
+			if(i === 0 && currentHeadingLevel !== 1) {
+				showFailures([heading], "First heading in page is not <h1>");
+			}
+			
+			if(currentHeadingLevel > lastHeadingLevel + 1) {
+				failedHeadings = Array.from(headings);
+			}
+		}
+		
+		showFailures(failedHeadings, 'Headings are not following a logical hierarchy');
+	}
+	
 	self.test_audio = function() {
-		failedAudios = getFailingMultimediaElements('audio');
+		let failedAudios = getFailingMultimediaElements('audio');
 		
 		showFailures(failedAudios, 'Some audio elements have no tracks marked as captions, subtitles, or a description');
 	}
 
 	self.test_videos = function() {
-		failedVideos = getFailingMultimediaElements('video');
+		let failedVideos = getFailingMultimediaElements('video');
 		
 		showFailures(failedVideos, 'Some videos have no tracks marked as captions, subtitles, or a description');
 	}
 	
-	function getFailingMultimediaElements(mediaType) {
-		let multimediaElements = document.querySelectorAll(mediaType);
-		let failingElements = [];
-		
-		for(i=0; i<multimediaElements.length; i++) {
-			let multimediaElement = multimediaElements[i];
-			let track = multimediaElement.querySelectorAll('track[kind=subtitles], track[kind=captions], track[kind=descriptions]');
-			
-			if(track.length === 0) {
-				failingElements.push(multimediaElement);
-			}
-		}
-		
-		return failingElements;
-	}
-
 	self.test_images = function() {
 		let images = document.querySelectorAll('img');
 		let failedImages = [];
@@ -71,6 +80,28 @@
 		
 		showFailures(failedImages, 'Some images have no alt text and were not found with a corresponding <figcaption>');
 		showWarnings(warnImages, `Some images have empty alt text and are larger than the threshold of ${emptyAltDimensionThreshold} pixels`);
+	}
+	
+	function getHeadingLevel(heading) {
+		let headingString = heading.tagName.toLowerCase();
+		
+		return parseInt(headingString.substring(1));
+	}
+	
+	function getFailingMultimediaElements(mediaType) {
+		let multimediaElements = document.querySelectorAll(mediaType);
+		let failingElements = [];
+		
+		for(i=0; i<multimediaElements.length; i++) {
+			let multimediaElement = multimediaElements[i];
+			let track = multimediaElement.querySelectorAll('track[kind=subtitles], track[kind=captions], track[kind=descriptions]');
+			
+			if(track.length === 0) {
+				failingElements.push(multimediaElement);
+			}
+		}
+		
+		return failingElements;
 	}
 	
 	function getCousinOfType(node, parentType, childType) {
@@ -111,6 +142,10 @@
 			console.error(failureMessage);
 			console.table(failureList);
 		}
+	}
+	
+	function showSingleFailure(failureMessage) {
+		console.error(failureMessage);
 	}
 	
 	function showWarnings(warningList, warningMessage) {
