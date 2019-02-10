@@ -1,12 +1,12 @@
 function listenForClicks() {
 	document.addEventListener("click", (e) => {
 		
-		if (e.target.classList.contains("test")) {
+		if(e.target.classList.contains("test")) {
 			browser.tabs.query({active: true, currentWindow: true})
 				.then(runTest)
 				.catch(reportError);
 		}
-		
+
 		function runTest(tabs) {
 			let testName = getTestName(e.target);
 			browser.tabs.sendMessage(tabs[0].id, {

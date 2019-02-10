@@ -6,7 +6,7 @@
 
 	function runTest(testName) {
 		let testFunction = `test_${testName}`;
-		
+		console.log(testFunction);
 		if(typeof window[testFunction] === "function") {
 			window[testFunction]();
 		}

@@ -2,27 +2,51 @@
 <html>
 	<head>
 		<meta charset="utf-8"/>
-		<link rel="stylesheet" href="choose_test.css"/>
+		<link rel="stylesheet" href="css/choose_test.css"/>
 	</head>
 
 	<body>
-		<div id="popup-content">
-			<p>Tests</p>
-			<ul>
-				<li class="test" data-test-name="images">Images</li>
-				<li class="test" data-test-name="videos">Videos</li>
-				<li class="test" data-test-name="audio">Audio</li>
-				<li class="test" data-test-name="heading_levels">Heading Levels</li>
-				<li class="test" data-test-name="bold_tags">Bold tags</li>
-				<li class="test" data-test-name="italic_tags">Italic tags</li>
-				<li class="test" data-test-name="form_element_labels">Form element labels</li>
-			</ul>
-		</div>
+		<section id="popup-content">
+			<h1>Accessibility Tests</h1>
+			
+			<section>
+				<input type="radio" name="test_group" id="semantic" checked/>
+				<input type="radio" name="test_group" id="layout"/>
+				<input type="radio" name="test_group" id="visual"/>
+				<input type="radio" name="test_group" id="audible"/>
+				<input type="radio" name="test_group" id="motor"/>
+				
+				<label for="semantic" aria-controls="test_list" data-test-group="semantic" class="tab">Semantic</label>
+				<label for="layout" aria-controls="test_list" data-test-group="layout" class="tab">Layout</label>
+				<label for="visual" aria-controls="test_list" data-test-group="visual" class="tab">Visual</label>
+				<label for="audible" aria-controls="test_list" data-test-group="audible" class="tab">Audible</label>
+				<label for="motor" aria-controls="test_list" data-test-group="motor" class="tab">Motor</label>
+				
+				<section id="test_list" role="tabpanel" class="test-list">
+					<ul data-tab="semantic" class="test-group">
+						<li class="test" data-test-name="images">Images</li>
+						<li class="test" data-test-name="heading_levels">Heading Levels</li>
+						<li class="test" data-test-name="bold_tags">Bold tags</li>
+						<li class="test" data-test-name="italic_tags">Italic tags</li>
+						<li class="test" data-test-name="form_element_labels">Form element labels</li>
+					</ul>
+					<ul data-tab="layout" class="test-group"></ul>
+					<ul data-tab="visual" class="test-group">
+						<li class="test" data-test-name="videos">Videos</li>
+					</ul>
+					<ul data-tab="audible" class="test-group">
+						<li class="test" data-test-name="audio">Audio</li>
+					</ul>
+					<ul data-tab="motor" class="test-group"></ul>
+				</section>
+			</section>
+			
+		</section>
 		
-		<div id="error-content" class="hidden">
+		<section id="error-content" class="hidden">
 			<p>Can't test this web page.</p>
 			<p>Try a different page.</p>
-		</div>
+		</section>
 		
 		<script src="choose_test.js"></script>
 	</body>
