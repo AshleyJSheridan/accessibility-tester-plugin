@@ -6,7 +6,7 @@
 
 	function runTest(testName) {
 		let testFunction = `test_${testName}`;
-		console.log(testFunction);
+		
 		if(typeof window[testFunction] === "function") {
 			window[testFunction]();
 		}
@@ -18,6 +18,18 @@
 		}
 	});
 	
+	self.test_blur = function() {
+		addBodyFilter("blur(1.5px)");
+	}
+	
+	self.test_colourblind_monochromacy = function() {
+		addBodyFilter("grayscale(1)");
+	}
+	
+	self.test_reset_filters = function() {
+		document.body.style.filter = "";
+	}
+
 	self.test_form_element_labels = function() {
 		let inputs = document.querySelectorAll("input:not([type=submit]):not([type=reset]):not([type=button]):not([type=hidden]), select, textarea");
 		let failedInputs = [];
@@ -115,6 +127,16 @@
 		
 		showFailures(failedImages, "Some images have no alt text and were not found with a corresponding <figcaption>");
 		showWarnings(warnImages, `Some images have empty alt text and are larger than the threshold of ${emptyAltDimensionThreshold} pixels`);
+	}
+	
+	function addBodyFilter(filter) {
+		let existingFilters = document.body.style.filter;
+		
+		if(!existingFilters.includes(filter)) {
+			let newFilter = `${existingFilters} ${filter}`;
+			
+			document.body.style.filter = newFilter;
+		}
 	}
 	
 	function getElementWithAttributeValue(elementType, attribute, attributeValue) {
