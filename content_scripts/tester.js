@@ -21,11 +21,7 @@
 	self.test_blur = function() {
 		addBodyFilter("blur", "1.5px");
 	}
-	
-	self.test_greyscale = function() {
-		addBodyFilter("grayscale", "1");
-	}
-	
+
 	self.test_colourblind_protanopia = function() {
 		let matrix = `.56667 .43333 0      0 0
 		              .55833 .44167 0      0 0
