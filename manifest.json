@@ -22,10 +22,11 @@
 		"default_popup": "popup/choose_test.html"
 	},
 
-	"web_accessible_resources": [
-		"beasts/frog.jpg",
-		"beasts/turtle.jpg",
-		"beasts/snake.jpg"
-	]
+	"content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content_scripts/helpers.js"]
+    }
+  ]
 
 }
