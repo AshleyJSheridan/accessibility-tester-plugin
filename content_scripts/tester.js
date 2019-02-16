@@ -19,13 +19,85 @@
 	});
 	
 	self.test_blur = function() {
-		addBodyFilter("blur(1.5px)");
+		addBodyFilter("blur", "1.5px");
 	}
 	
-	self.test_colourblind_monochromacy = function() {
-		addBodyFilter("grayscale(1)");
+	self.test_greyscale = function() {
+		addBodyFilter("grayscale", "1");
 	}
 	
+	self.test_colourblind_protanopia = function() {
+		let matrix = `.56667 .43333 0      0 0
+		              .55833 .44167 0      0 0
+		              0      .24167 .75833 0 0
+		              0      0      0      1 0`;
+		
+		applySvgColorMatrixFilter(matrix, "protanopia");
+	}
+	
+	self.test_colourblind_protanomaly = function() {
+		let matrix = `.81667 .18333 0    0 0
+		              .33333 .66667 0    0 0
+		              0      .125   .875 0 0
+		              0      0      0    1 0`;
+		
+		applySvgColorMatrixFilter(matrix, "protanomaly");
+	}
+
+	self.test_colourblind_deuteranopia = function() {
+		let matrix = `.625 .375 0  0 0
+		              .7   .3   0  0 0
+		              0    .3   .7 0 0
+		              0    0    0  1 0`;
+		
+		applySvgColorMatrixFilter(matrix, "deuteranopia");
+	}
+
+	self.test_colourblind_deutranomaly = function() {
+		let matrix = `.8     .2     0      0 0
+		              .25833 .74167 0      0 0
+		              0      .14167 .85833 0 0
+		              0      0      0      1 0`;
+		
+		applySvgColorMatrixFilter(matrix, "deutranomaly");
+	}
+
+	self.test_colourblind_tritanopia = function() {
+		let matrix = `.95 .5     0      0 0
+		              0   .43333 .56667 0 0
+		              0   .475   .525   0 0
+		              0   0      0      1 0`;
+		
+		applySvgColorMatrixFilter(matrix, "tritanopia");
+	}
+
+	self.test_colourblind_tritanomaly = function() {
+		let matrix = `.96667 .3333  0      0 0
+		              0      .73333 .26667 0 0
+		              0      .18333 .81667 0 0
+		              0      0      0      1 0`;
+		
+		applySvgColorMatrixFilter(matrix, "tritanomaly");
+	}
+
+	self.test_colourblind_achromatopsia = function() {
+		let matrix = `.299 .587 .114 0 0
+		              .299 .587 .114 0 0
+		              .299 .587 .114 0 0
+		              0    0    0    1 0`;
+		
+		applySvgColorMatrixFilter(matrix, "achromatopsia");
+	}
+
+	self.test_colourblind_achromatomaly = function() {
+		let matrix = `.618 .32  .62  0 0
+		              .163 .775 .62  0 0
+		              .163 .320 .516 0 0
+		              0    0    0    1 0`;
+		
+		applySvgColorMatrixFilter(matrix, "achromatomaly");
+	}
+
 	self.test_reset_filters = function() {
 		document.body.style.filter = "";
 	}
@@ -129,12 +201,44 @@
 		showWarnings(warnImages, `Some images have empty alt text and are larger than the threshold of ${emptyAltDimensionThreshold} pixels`);
 	}
 	
-	function addBodyFilter(filter) {
-		let existingFilters = document.body.style.filter;
+	function applySvgColorMatrixFilter(matrix, filterName) {
+		let filterId = `filter_${filterName}`;
+		let svgFilterHtml = `<svg height="0">
+			<filter id="${filterId}">
+				<feColorMatrix values="${matrix}"/>
+			</filter>
+		</svg>`;
 		
-		if(!existingFilters.includes(filter)) {
-			let newFilter = `${existingFilters} ${filter}`;
-			
+		addHtmlWithIdIfNotPresent(filterId, svgFilterHtml);
+		removeBodyFilter("url");
+		addBodyFilter("url", `#${filterId}`);
+	}
+	
+	function addHtmlWithIdIfNotPresent(elementId, html) {
+		let elementExists = document.getElementById(elementId);
+		
+		if(!elementExists) {
+			document.body.insertAdjacentHTML("beforeend", html);
+		}
+	}
+	
+	function removeBodyFilter(filterName) {
+		let existingFilters = document.body.style.filter;
+
+		if(existingFilters.includes(filterName)) {
+			let filterRegex = new RegExp(filterName + "\\([^\\)]+\\)");
+			let newFilterList = existingFilters.replace(filterRegex, "");
+
+			document.body.style.filter = newFilterList;
+		}
+	}
+	
+	function addBodyFilter(filterName, filterOptions) {
+		let existingFilters = document.body.style.filter;
+
+		if(!existingFilters.includes(filterName)) {
+			let newFilter = `${existingFilters} ${filterName}(${filterOptions})`;
+
 			document.body.style.filter = newFilter;
 		}
 	}
