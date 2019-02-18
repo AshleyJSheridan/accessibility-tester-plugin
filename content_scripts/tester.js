@@ -18,6 +18,32 @@
 		}
 	});
 	
+	self.test_colour_contrast = function() {
+		let walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null, false);
+		let textNode;
+		let failedTextContrast = [];
+		
+		while(textNode = walker.nextNode()) {
+			let textContent = getTextContentFromTextNode(textNode);
+			
+			if(textContent.length > 0) {
+				let computedStyles = getComputerStylesForTextNode(textNode);
+				
+				let background = getColourFromComputed(computedStyles, "background-color");
+				let foreground = getColourFromComputed(computedStyles, "color");
+				let fontSize = parseInt(getPropertyFromComputedStyles(computedStyles, "font-size"));
+				let fontWeight = getPropertyFromComputedStyles(computedStyles, "font-weight");
+				let contrast = getColourContrast(background, foreground);
+				
+				if(!doesTextContrast(fontSize, fontWeight, contrast)) {
+					failedTextContrast.push(textNode);
+				}
+			}
+		}
+		
+		showFailures(failedTextContrast, "Text colour doesn't contrast enough with background");
+	}
+
 	self.test_blur = function() {
 		addBodyFilter("blur", "1.5px");
 	}

@@ -8,6 +8,16 @@ body {
 	margin: 0;
 }
 
+section.error {
+	margin: 0;
+	padding: 1em;
+	
+	p {
+		margin: 0;
+		padding: .25em 1em;
+	}
+}
+
 .hidden {
 	display: none;
 }

@@ -121,3 +121,75 @@ function getDescendantOfType(parentNode, type) {
 
 	return false;
 }
+
+function doesTextContrast(fontSize, fontWeight, contrast) {
+	let minContrastLevel = 4.5;
+	let largeTextContrastLevel = 3;
+	let largeTextSize = 24;
+	let largeTextSizeBold = 18.66;
+	let boldTextWeight = 700;
+
+	let passedMinContrast = contrast >= minContrastLevel;
+	let isLargeText = (fontSize >= largeTextSize) || (fontWeight >= boldTextWeight && fontSize >= largeTextSizeBold);
+	let passedLargeTextMinContrast = (isLargeText && contrast >= largeTextContrastLevel);
+
+	return passedMinContrast || passedLargeTextMinContrast;
+}
+
+function getColourFromComputed(computedStyles, colourProperty) {
+	let colour = getPropertyFromComputedStyles(computedStyles, colourProperty);
+	let colourComponents;
+
+	if(colour.match(/^rgba/)) {
+		colourComponents = colour.match(/^rgba\((\d+), ?(\d+), ?(\d+), ?(\d+)/);
+
+		return convertRGBAtoRGB(colourComponents[1], colourComponents[2], colourComponents[3], colourComponents[4]);
+	}
+
+	colourComponents = colour.match(/^rgb\((\d+), ?(\d+), ?(\d+)/);
+	return {
+		r: parseInt(colourComponents[1]),
+		g: parseInt(colourComponents[2]),
+		b: parseInt(colourComponents[3])
+	};
+}
+
+function convertRGBAtoRGB(r, g, b, alpha) {
+	let defaultBackground = 255; // 255 for each RBG component
+
+	return {
+		r: (1 - alpha) * 255 + alpha * r,
+		g: (1 - alpha) * 255 + alpha * g,
+		b: (1 - alpha) * 255 + alpha * b
+	};
+}
+
+function getPropertyFromComputedStyles(computedStyles, property) {
+	return computedStyles.getPropertyValue(property);
+}
+
+function getTextContentFromTextNode(textNode) {
+	return textNode.textContent.trim();
+}
+
+function getComputerStylesForTextNode(textNode) {
+	return window.getComputedStyle(textNode.parentNode);
+}
+
+function getColourContrast(rgb1, rgb2) {
+	let luminance1 = getColourLuminance(rgb1.r, rgb1.g, rgb1.b);
+	let luminance2 = getColourLuminance(rgb2.r, rgb2.g, rgb2.b);
+
+	return luminance1 / luminance2;
+}
+
+function getColourLuminance(r, g, b) {
+	var a = [r, g, b].map(function (v) {
+		v /= 255;
+		return v <= .03928
+			? v / 12.92
+			: Math.pow( (v + .055) / 1.055, 2.4 );
+	});
+
+	return a[0] * 0.2126 + a[1] * 0.7152 + a[2] * .0722 + .05;
+}
