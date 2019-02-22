@@ -3,6 +3,8 @@ body {
   width: 300px; }
 
 body {
+  background-color: window;
+  color: windowtext;
   font: menu;
   margin: 0; }
 
@@ -53,6 +55,7 @@ input#motor[type=radio]:checked ~ .test-list ul[data-tab=motor] {
 
 h1 {
   font: menu;
+  font-weight: bold;
   text-align: center; }
 
 ul.test-group {

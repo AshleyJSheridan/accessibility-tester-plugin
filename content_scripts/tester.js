@@ -175,10 +175,13 @@
 			if(i === 0 && currentHeadingLevel !== 1) {
 				showFailures([heading], "First heading in page is not <h1>");
 			}
-			
+
 			if(currentHeadingLevel > lastHeadingLevel + 1) {
 				failedHeadings = Array.from(headings);
+				break;
 			}
+			
+			lastHeadingLevel = currentHeadingLevel;
 		}
 		
 		showFailures(failedHeadings, "Headings are not following a logical hierarchy");
