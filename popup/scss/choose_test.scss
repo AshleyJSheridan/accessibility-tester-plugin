@@ -33,12 +33,18 @@ label.tab {
 	border-radius: 5px 5px 0 0;
 	bottom: -1px;
 	color: buttontext;
+	cursor: pointer;
 	display: inline-block;
 	margin: 0;
 	padding: .25em;
 	position: relative;
 	text-decoration: none;
 	z-index: 1;
+	
+	&:hover {
+		background-color: highlight;
+		color: highlighttext;
+	}
 }
 
 input#semantic[type=radio]:checked ~ label.tab[for=semantic],
@@ -64,7 +70,7 @@ h1 {
 }
 
 ul.test-group {
-	background-color: appworkspace;
+	background-color: buttonface;
 	border: 1px solid threeddarkshadow;
 	display: none;
 	margin: 0;

@@ -10,28 +10,24 @@
 			<h1>Accessibility Tests</h1>
 			
 			<section>
-				<input type="radio" name="test_group" id="semantic" checked/>
-				<input type="radio" name="test_group" id="layout"/>
+				<input type="radio" name="test_group" id="layout" checked/>
 				<input type="radio" name="test_group" id="visual"/>
 				<input type="radio" name="test_group" id="audible"/>
 				<input type="radio" name="test_group" id="motor"/>
 				
-				<label for="semantic" aria-controls="test_list" data-test-group="semantic" class="tab">Semantic</label>
 				<label for="layout" aria-controls="test_list" data-test-group="layout" class="tab">Layout</label>
 				<label for="visual" aria-controls="test_list" data-test-group="visual" class="tab">Visual</label>
 				<label for="audible" aria-controls="test_list" data-test-group="audible" class="tab">Audible</label>
 				
 				<section id="test_list" role="tabpanel" class="test-list">
-					<ul data-tab="semantic" class="test-group">
-						<li class="test" data-test-name="images">Image descriptions</li>
-						<li class="test" data-test-name="bold_tags">Bold tags</li>
-						<li class="test" data-test-name="italic_tags">Italic tags</li>
-						<li class="test" data-test-name="form_element_labels">Form element labels</li>
-					</ul>
 					<ul data-tab="layout" class="test-group">
 						<li class="test" data-test-name="heading_levels">Heading Levels</li>
+						<li class="test" data-test-name="form_element_labels">Form element labels</li>
+						<li class="test" data-test-name="bold_tags">Bold tags</li>
+						<li class="test" data-test-name="italic_tags">Italic tags</li>
 					</ul>
 					<ul data-tab="visual" class="test-group">
+						<li class="test" data-test-name="images">Image descriptions</li>
 						<li class="test" data-test-name="videos">Video captions</li>
 						<li class="test" data-test-name="colour_contrast">Colour contrast</li>
 						<li class="test" data-test-name="blur">Low vision (blur)</li>
