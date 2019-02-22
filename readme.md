@@ -24,11 +24,21 @@ Tests are grouped under the Layout, Visual, or Audible tabs, depeding on the typ
 
 For example, running the "Heading Levels" test on the `test sources/heading fail test.html` page of the project will give an error report in the console similar to this:
 
-![Accessibility add-on main menu](docs/img/heading-error-console.png)
+![Accessibility add-on example error table](docs/img/heading-error-console.png)
 
 The colour blindness and blur filter tests affect the page currently being viewed, and have no error output in the console. These tests are to help simulate the page under particular visual conditions, so that you can more easily identify any problem areas. Running the blur and achromatopsia colour blindness tests on my [How Readable is Your Content? blog post](http://www.ashleysheridan.co.uk/blog/How+Readable+is+Your+Content%3F) will show something similar to this:
 
-![Accessibility add-on main menu](docs/img/blur-achromatopsia-filters.png)
+![Blur and achromatopsia simulation filter being applied to a web page](docs/img/blur-achromatopsia-filters.png)
+
+### Error Messages
+
+If a test produces an error message table, it will list out each element that fails the test. For example, if the heading levels on a page don't have a logical order, the entire heading list will be output.
+
+Beside each element is a small icon:
+
+![Firefox DOM inspect icon](docs/img/element-inspect-icon.png)
+
+Hovering this will highlight the element on the page, and clicking it will take you directly through to that element in the <abbr title="Document Object Model">DOM</abbr> inspector. This will help you get to the source of any problems more quickly.
 
 ## Planned Updates
 
