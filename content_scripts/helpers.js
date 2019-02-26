@@ -201,3 +201,50 @@ function getColourLuminance(r, g, b) {
 
 	return a[0] * 0.2126 + a[1] * 0.7152 + a[2] * .0722 + .05;
 }
+
+function getStylesRemoved() {
+	return !!window.stylesRemoved;
+}
+
+function setStylesdisabledStatus(status) {
+	window.stylesRemoved = status;
+}
+
+function disableExternalStyles(externalStylesheet) {
+	let href = externalStylesheet.getAttribute("href");
+
+	externalStylesheet.setAttribute("data-disabled-href", href);
+	externalStylesheet.removeAttribute("href");
+}
+
+function enableExternalStyles(externalStylesheet) {
+	let href = externalStylesheet.dataset.disabledHref;
+
+	externalStylesheet.setAttribute("href", href);
+}
+
+function enableInlineStyle(element) {
+	let style = element.dataset.disabledStyle;
+	
+	element.setAttribute("style", style);
+}
+
+function disableInlineStyle(element) {
+	let style = element.getAttribute("style");
+	
+	element.setAttribute("data-disabled-style", style);
+	element.setAttribute("style", "");
+}
+
+function enableBlockStyle(element) {
+	let style = atob(element.dataset.disabledBlockStyle);
+	
+	element.innerHTML = style;
+}
+
+function disableBlockStyle(element) {
+	let style = btoa(element.innerHTML);
+
+	element.setAttribute("data-disabled-block-style", style);
+	element.innerHTML = "";
+}

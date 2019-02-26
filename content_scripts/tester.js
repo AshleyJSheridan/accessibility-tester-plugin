@@ -20,15 +20,47 @@
 	
 	self.test_disable_styles = function() {
 		let externalStylesheets = document.querySelectorAll("link[rel=stylesheet]");
-		
-		console.log(externalStylesheets);
-		/*for(i=0; i<externalStylesheets; i++) {
+		let inlineStyles = document.querySelectorAll("*[style]");
+		let blockStyles = document.getElementsByTagName("style");
+		let stylesRemoved = getStylesRemoved();
+
+		for(i=0; i<externalStylesheets.length; i++) {
 			let externalStylesheet = externalStylesheets[i];
 			
-			console.log(externalStylesheet);
-		}*/
+			if(stylesRemoved) {
+				enableExternalStyles(externalStylesheet);
+			} else {
+				disableExternalStyles(externalStylesheet);
+			}
+		}
+		
+		for(i=0; i<inlineStyles.length; i++) {
+			let inlineStyleElement = inlineStyles[i];
+			
+			if(stylesRemoved) {
+				enableInlineStyle(inlineStyleElement);
+			} else {
+				disableInlineStyle(inlineStyleElement);
+			}
+		}
+		
+		for(i=0; i<blockStyles.length; i++) {
+			let blockStyleElement = blockStyles[i];
+			
+			if(stylesRemoved) {
+				enableBlockStyle(blockStyleElement);
+			} else {
+				disableBlockStyle(blockStyleElement);
+			}
+		}
+		
+		if(stylesRemoved) {
+			setStylesdisabledStatus(false);
+		} else {
+			setStylesdisabledStatus(true);
+		}
 	}
-	
+
 	self.test_colour_contrast = function() {
 		let walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null, false);
 		let textNode;
