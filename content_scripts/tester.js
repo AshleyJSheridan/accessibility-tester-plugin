@@ -18,6 +18,17 @@
 		}
 	});
 	
+	self.test_disable_styles = function() {
+		let externalStylesheets = document.querySelectorAll("link[rel=stylesheet]");
+		
+		console.log(externalStylesheets);
+		/*for(i=0; i<externalStylesheets; i++) {
+			let externalStylesheet = externalStylesheets[i];
+			
+			console.log(externalStylesheet);
+		}*/
+	}
+	
 	self.test_colour_contrast = function() {
 		let walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null, false);
 		let textNode;
