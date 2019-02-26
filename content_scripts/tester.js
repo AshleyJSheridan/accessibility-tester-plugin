@@ -146,17 +146,13 @@
 	self.test_bold_tags = function() {
 		let boldTags = document.querySelectorAll("b");
 		
-		if(boldTags.length) {
-			showFailures(Array.from(boldTags), "Bold (<b>) tags used, <strong> is more semantic");
-		}
+		showFailures(Array.from(boldTags), "Bold (<b>) tags used, <strong> is more semantic");
 	}
 	
 	self.test_italic_tags = function() {
 		let italicTags = document.querySelectorAll("i");
 		
-		if(italicTags.length) {
-			showFailures(Array.from(italicTags), "Italic (<i>) tags used, <em> is more semantic");
-		}
+		showFailures(Array.from(italicTags), "Italic (<i>) tags used, <em> is more semantic");
 	}
 	
 	self.test_heading_levels = function() {
@@ -222,8 +218,12 @@
 			}
 		}
 		
-		showFailures(failedImages, "Some images have no alt text and were not found with a corresponding <figcaption>");
+		showFailures(failedImages, "Some images have no alt text and were not found with a corresponding <figcaption>", false);
 		showWarnings(warnImages, `Some images have empty alt text and are larger than the threshold of ${emptyAltDimensionThreshold} pixels`);
+		
+		if(!failedImages.length && !warnImages.length) {
+			showSuccess("No problems found");
+		}
 	}
 
 })();

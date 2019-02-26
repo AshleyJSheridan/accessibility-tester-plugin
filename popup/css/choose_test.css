@@ -72,5 +72,18 @@ li {
   li:hover {
     background-color: highlight;
     color: highlighttext; }
+  li.button {
+    margin-top: .5em;
+    border: 1px solid windowtext;
+    border-radius: 5px;
+    display: inline-block;
+    background-color: windowtext;
+    color: window; }
+    li.button:hover {
+      background-color: window;
+      color: windowtext; }
+
+fieldset {
+  margin-top: 1em; }
 
 /*# sourceMappingURL=choose_test.css.map */

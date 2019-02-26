@@ -40,11 +40,19 @@ function applySvgColorMatrixFilter(matrix, filterName) {
 	addBodyFilter("url", `#${filterId}`);
 }
 
-function showFailures(failureList, failureMessage) {
+function showFailures(failureList, failureMessage, successOnEmpty = true) {
 	if(failureList.length) {
 		console.error(failureMessage);
 		console.table(failureList);
 	}
+	
+	if(failureList.length === 0 && successOnEmpty) {
+		showSuccess("No problems found");
+	}
+}
+
+function showSuccess(message) {
+	console.info(message);
 }
 
 function showSingleFailure(failureMessage) {

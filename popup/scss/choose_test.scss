@@ -89,4 +89,22 @@ li {
 		background-color: highlight;
 		color: highlighttext;
 	}
+	
+	&.button {
+		margin-top: .5em;
+		border: 1px solid windowtext;
+		border-radius: 5px;
+		display: inline-block;
+		background-color: windowtext;
+		color: window;
+		
+		&:hover {
+			background-color: window;
+			color: windowtext;
+		}
+	}
+}
+
+fieldset {
+	margin-top: 1em;
 }
