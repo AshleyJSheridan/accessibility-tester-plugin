@@ -18,6 +18,15 @@
 		}
 	});
 	
+	self.test_table_appearance = function() {
+		let tables = document.getElementsByTagName("table");
+		let failingTables = [];
+		
+		for(i=0; i<tables.length; i++) {
+			
+		}
+	}
+	
 	self.test_disable_styles = function() {
 		let externalStylesheets = document.querySelectorAll("link[rel=stylesheet]");
 		let inlineStyles = document.querySelectorAll("*[style]");

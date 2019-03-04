@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		
+		<style>
+		.styled-table {
+			display: block;
+		}
+		.styled-table tr {
+			display: block;
+		}
+		.styled-table th,
+		.styled-table td {
+			display: inline-block;
+		}
+		
+		.semantic-styled-table {
+			display: table;
+		}
+		.semantic-styled-table tr {
+			display: table-row;
+		}
+		.semantic-styled-table td,
+		.semantic-styled-table th {
+			display: table-cell;
+		}
+		
+		tr.hidden-row {
+			display: none;
+		}
+		</style>
+	</head>
+	<body>
+		<section>
+			<h1>Fail Tests</h1>
+			
+			<table class="styled-table">
+				<tr>
+					<th>ID</td><th>Name</th>
+				</tr>
+				<tr>
+					<td>1111</td><td>Bob</td>
+				</tr>
+				<tr>
+					<td>2222</td><td>Alice</td>
+				</tr>
+				<tr>
+					<td>3333</td><td>Sam</td>
+				</tr>
+			</table>
+			
+			<table>
+				<tr class="hidden-row">
+					<th>ID</td><th>Name</th>
+				</tr>
+				<tr>
+					<td>1111</td><td>Bob</td>
+				</tr>
+				<tr>
+					<td>2222</td><td>Alice</td>
+				</tr>
+				<tr>
+					<td>3333</td><td>Sam</td>
+				</tr>
+			</table>
+
+		</section>
+		<section>
+			<h1>Passing Tests</h1>
+			
+			<table>
+				<tr>
+					<th>ID</td><th>Name</th>
+				</tr>
+				<tr>
+					<td>1111</td><td>Bob</td>
+				</tr>
+				<tr>
+					<td>2222</td><td>Alice</td>
+				</tr>
+				<tr>
+					<td>3333</td><td>Sam</td>
+				</tr>
+			</table>
+			
+			<table class="semantic-styled-table">
+				<tr>
+					<th>ID</td><th>Name</th>
+				</tr>
+				<tr>
+					<td>1111</td><td>Bob</td>
+				</tr>
+				<tr>
+					<td>2222</td><td>Alice</td>
+				</tr>
+				<tr>
+					<td>3333</td><td>Sam</td>
+				</tr>
+			</table>
+			
+			<table class="styled-table" role="table">
+				<tr role="row">
+					<th role="columnheader">ID</td><th role="columnheader">Name</th>
+				</tr>
+				<tr role="row">
+					<td role="cell">1111</td><td role="cell">Bob</td>
+				</tr>
+				<tr role="row">
+					<td role="cell">2222</td><td role="cell">Alice</td>
+				</tr>
+				<tr role="row">
+					<td role="cell">3333</td><td role="cell">Sam</td>
+				</tr>
+			</table>
+
+		</section>
+	</body>
+</html>
