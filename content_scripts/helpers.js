@@ -72,7 +72,7 @@ function getHeadingLevel(heading) {
 	return parseInt(headingString.substring(1));
 }
 
-function getFailingMultimediaElements(mediaType) {
+function getMultimediaElementsWithoutTextTracks(mediaType) {
 	let multimediaElements = document.querySelectorAll(mediaType);
 	let failingElements = [];
 
@@ -86,6 +86,12 @@ function getFailingMultimediaElements(mediaType) {
 	}
 
 	return failingElements;
+}
+
+function getMultimediaElementsWithAutoplay(mediaType) {
+	let multimediaElements = document.querySelectorAll(`${mediaType}[autoplay]`);
+
+	return Array.from(multimediaElements);
 }
 
 function getElementWithAttributeValue(elementType, attribute, attributeValue) {

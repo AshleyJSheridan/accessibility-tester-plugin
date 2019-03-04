@@ -227,15 +227,27 @@
 	}
 	
 	self.test_audio = function() {
-		let failedAudios = getFailingMultimediaElements('audio');
+		let failedAudios = getMultimediaElementsWithoutTextTracks('audio');
 		
 		showFailures(failedAudios, "Some audio elements have no tracks marked as captions, subtitles, or a description");
 	}
+	
+	self.test_audio_autoplay = function() {
+		let failedAudios = getMultimediaElementsWithAutoplay('audio');
+		
+		showFailures(failedAudios, "Audio elements should not auto-play");
+	}
 
 	self.test_videos = function() {
-		let failedVideos = getFailingMultimediaElements('video');
+		let failedVideos = getMultimediaElementsWithoutTextTracks('video');
 		
 		showFailures(failedVideos, "Some videos have no tracks marked as captions, subtitles, or a description");
+	}
+	
+	self.test_videos_autoplay = function() {
+		let failedVideos = getMultimediaElementsWithAutoplay('video');
+		
+		showFailures(failedVideos, "Videos should not auto-play");
 	}
 	
 	self.test_images = function() {

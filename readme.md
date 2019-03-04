@@ -47,13 +47,15 @@ Layout|Form element labels|Check that all visible form elements have labels that
 Layout|Bold tags|Look for any use of `<b>` tags
 Layout|Italic tags|Look for any use of `<i>` tags
 Visual|Image descriptions|Check that all images have `alt` text, or are within `<figure>` elements that contain a `<figcaption>`. This will also throw a warning if large images are found with empty `alt` text, which could indicate a development error
-Visual|Video captions|Ensure that `<video>` tags contain at least one set of captions of the type `captions`, `subtitles`, or `descriptions`
 Visual|Colour contrast|Look at all text and check the colour contrast ratio is at least 3:1 for large text or 4.5:1 for regular text, as detailed in the [Web <abbr title="Accessibility in Mind">AIM</abbr> Colour Contrast Checker](https://webaim.org/resources/contrastchecker/)
 Visual|Toggle CSS|Toggle all CSS (found in external stylesheets, `<style>` blocks, or inline `style` attributes) on or off on the page
+Visual|Video captions|Ensure that `<video>` tags contain at least one set of captions of the type `captions`, `subtitles`, or `descriptions`
+Visual|Autoplay video|Check for any `<video>` elements with the `autoplay` attribute set
 Visual|Low vision (blur)|Applies a blur filter to the page to simulate poor vision
 Visual|Colour blindness (all)|Applies a colour blindness simulation filter to the page. Only one colour blindness filter can be applied at any one time
 Visual|Reset filters|Remove any blur or colour blindness filters currently applied
 Audible|Audio captions|Ensure that any `<audio>` tags contain at least one set of captions of the type `captions`, `subtitles`, or `descriptions`
+Audible|Autoplay audio|Check for any `<audio>` elements with the `autoplay` attribute set
 
 ## Planned Updates
 
