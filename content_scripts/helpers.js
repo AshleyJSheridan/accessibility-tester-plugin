@@ -136,6 +136,17 @@ function getDescendantOfType(parentNode, type) {
 	return false;
 }
 
+function getDescendantsOfType(parentNode, type) {
+	if(!parentNode)
+		return false;
+	
+	nodes = parentNode.querySelectorAll(type);
+	if(nodes !== null)
+		return nodes;
+
+	return false;
+}
+
 function doesTextContrast(fontSize, fontWeight, contrast) {
 	let minContrastLevel = 4.5;
 	let largeTextContrastLevel = 3;
@@ -187,7 +198,31 @@ function getTextContentFromTextNode(textNode) {
 }
 
 function getComputerStylesForTextNode(textNode) {
-	return window.getComputedStyle(textNode.parentNode);
+	return getComputedStylesForNode(textNode.parentNode);
+}
+
+function getComputedStylesForNode(node) {
+	return window.getComputedStyle(node);
+}
+
+function getComputedStyleForNode(node, property) {
+	let computedStyles = getComputedStylesForNode(node);
+	
+	return getPropertyFromComputedStyles(computedStyles, property);
+}
+
+function hasDescdendantsOfTypeWithoutGivenComputedStyle(node, descendantSelector, computedStyleProperty, matchingValues) {
+	let children = node.querySelectorAll(descendantSelector);
+	
+	for(let i=0; i<children.length; i++) {
+		let childNode = children[i];
+		let computedStyleValue = getComputedStyleForNode(childNode, computedStyleProperty);
+		
+		if(matchingValues.includes(computedStyleValue))
+			return true;
+	}
+	
+	return false;
 }
 
 function getColourContrast(rgb1, rgb2) {

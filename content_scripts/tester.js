@@ -22,8 +22,19 @@
 		let tables = document.getElementsByTagName("table");
 		let failingTables = [];
 		
-		for(i=0; i<tables.length; i++) {
+		for(let i=0; i<tables.length; i++) {
+			let table = tables[i];
+			let tableDisplay = getComputedStyleForNode(table, "display");
+			let tableRole = table.getAttribute("role");
 			
+			if(tableDisplay !== "table" && (tableRole !== "table")) {
+				failingTables.push(table);
+				continue;
+			}
+			
+			// get if there are rows that are not display: table-row and do not have a role="row"
+			let hasFailedRow = hasDescdendantsOfTypeWithoutGivenComputedStyle(table, "tr:not([role=row])", "display", ["table-row"]);
+			console.log(table, hasFailedRow);
 		}
 	}
 	
