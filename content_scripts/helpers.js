@@ -213,12 +213,12 @@ function getComputedStyleForNode(node, property) {
 
 function hasDescdendantsOfTypeWithoutGivenComputedStyle(node, descendantSelector, computedStyleProperty, matchingValues) {
 	let children = node.querySelectorAll(descendantSelector);
-	
+
 	for(let i=0; i<children.length; i++) {
 		let childNode = children[i];
 		let computedStyleValue = getComputedStyleForNode(childNode, computedStyleProperty);
 		
-		if(matchingValues.includes(computedStyleValue))
+		if(!matchingValues.includes(computedStyleValue))
 			return true;
 	}
 	

@@ -21,6 +21,9 @@
 	self.test_table_appearance = function() {
 		let tables = document.getElementsByTagName("table");
 		let failingTables = [];
+		let failingRows = [];
+		let failingHeadings = [];
+		let failingCells = [];
 		
 		for(let i=0; i<tables.length; i++) {
 			let table = tables[i];
@@ -34,8 +37,30 @@
 			
 			// get if there are rows that are not display: table-row and do not have a role="row"
 			let hasFailedRow = hasDescdendantsOfTypeWithoutGivenComputedStyle(table, "tr:not([role=row])", "display", ["table-row"]);
-			console.log(table, hasFailedRow);
+			if(hasFailedRow === true) {
+				failingRows.push(table);
+				continue;
+			}
+			
+			// get if there are heading cells that are not display: table-cell and have no role="columnheader|rowheader" 
+			let hasFailedHeading = hasDescdendantsOfTypeWithoutGivenComputedStyle(table, "th:not([role=columnheader]):not([role=rowheader])", "display", ["table-cell"]);
+			if(hasFailedHeading === true) {
+				failingHeadings.push(table);
+				continue;
+			}
+			
+			// get if there are cells that are not display: table-cell and have no role="cell" 
+			let hasFailedCell = hasDescdendantsOfTypeWithoutGivenComputedStyle(table, "td:not([role=cell])", "display", ["table-cell"]);
+			if(hasFailedCell === true) {
+				failingCells.push(table);
+				continue;
+			}
 		}
+		
+		showFailures(failingTables, "Tables should have role=\"table\" if CSS changes their display value");
+		showFailures(failingRows, "Table rows should have role=\"row\" if CSS changes their display value");
+		showFailures(failingHeadings, "Table headings should have role=\"columnheader\" or role=\"rowheader\" if CSS changes their display value");
+		showFailures(failingCells, "Table cells should have role=\"cell\" if CSS changes their display value");
 	}
 	
 	self.test_disable_styles = function() {

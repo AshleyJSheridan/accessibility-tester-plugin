@@ -46,6 +46,7 @@ Layout|Heading levels|Check that the page starts with an `<h1>` level heading, a
 Layout|Form element labels|Check that all visible form elements have labels that either wrap the element, or are associated via an `id` and `for` combination
 Layout|Bold tags|Look for any use of `<b>` tags
 Layout|Italic tags|Look for any use of `<i>` tags
+Layout|Table appearance|Checks table elements have correct `role` attributes if CSS changes their `display` property to a non-table type
 Visual|Image descriptions|Check that all images have `alt` text, or are within `<figure>` elements that contain a `<figcaption>`. This will also throw a warning if large images are found with empty `alt` text, which could indicate a development error
 Visual|Colour contrast|Look at all text and check the colour contrast ratio is at least 3:1 for large text or 4.5:1 for regular text, as detailed in the [Web <abbr title="Accessibility in Mind">AIM</abbr> Colour Contrast Checker](https://webaim.org/resources/contrastchecker/)
 Visual|Toggle CSS|Toggle all CSS (found in external stylesheets, `<style>` blocks, or inline `style` attributes) on or off on the page
