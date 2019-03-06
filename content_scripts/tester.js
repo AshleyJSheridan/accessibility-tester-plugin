@@ -214,7 +214,8 @@
 
 	self.test_form_element_labels = function() {
 		let inputs = document.querySelectorAll("input:not([type=submit]):not([type=reset]):not([type=button]):not([type=hidden]), select, textarea");
-		let failedInputs = [];
+		let unlabeledInputs = [];
+		let hiddenLabels = [];
 		
 		for(i=0; i<inputs.length; i++) {
 			let input = inputs[i];
@@ -224,11 +225,20 @@
 			let associatedLabel = getElementWithAttributeValue("label", "for", inputId);
 			
 			if(!parentLabel && !associatedLabel) {
-				failedInputs.push(input);
+				unlabeledInputs.push(input);
+			} else {
+				let label = parentLabel ? parentLabel : associatedLabel;
+				let labelDisplay = getComputedStyleForNode(label, "display");
+				let labelVisibility = getComputedStyleForNode(label, "visibility");
+				
+				if(labelDisplay === "none" || labelVisibility === "hidden") {
+					hiddenLabels.push(input);
+				}
 			}
 		}
 		
-		showFailures(failedInputs, "Input elements don't have associated labels");
+		showFailures(unlabeledInputs, "Input elements don't have associated labels");
+		showFailures(hiddenLabels, "Input labels should not be hidden with display: none; or visibility: hidden;");
 	}
 	
 	self.test_bold_tags = function() {

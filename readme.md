@@ -43,7 +43,7 @@ Hovering this will highlight the element on the page, and clicking it will take 
 Section|Test Name|Description
 ---|---|---
 Layout|Heading levels|Check that the page starts with an `<h1>` level heading, at the levels are logical throughout the page, and don't skip levels for visual purposes
-Layout|Form element labels|Check that all visible form elements have labels that either wrap the element, or are associated via an `id` and `for` combination
+Layout|Form element labels|Check that all visible form elements have labels that either wrap the element, or are associated via an `id` and `for` combination, and ensure that labels are not set to `display: none;` or `visibility: hidden;`
 Layout|Bold tags|Look for any use of `<b>` tags
 Layout|Italic tags|Look for any use of `<i>` tags
 Layout|Table appearance|Checks table elements have correct `role` attributes if CSS changes their `display` property to a non-table type
