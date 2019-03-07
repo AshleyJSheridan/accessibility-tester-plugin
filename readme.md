@@ -48,6 +48,7 @@ Layout|Bold tags|Look for any use of `<b>` tags
 Layout|Italic tags|Look for any use of `<i>` tags
 Layout|Table appearance|Checks table elements have correct `role` attributes if CSS changes their `display` property to a non-table type
 Layout|Event handlers|Looks for elements not interactive by default for any inline event handlers (e.g. `onclick`) and looks for an interactive `role` value assigned to them
+Layout|Tabindex|Checks for elements with positive `tabindex` values, which cause issues for people relying on assistive tech
 Visual|Image descriptions|Check that all images have `alt` text, or are within `<figure>` elements that contain a `<figcaption>`. This will also throw a warning if large images are found with empty `alt` text, which could indicate a development error
 Visual|Colour contrast|Look at all text and check the colour contrast ratio is at least 3:1 for large text or 4.5:1 for regular text, as detailed in the [Web <abbr title="Accessibility in Mind">AIM</abbr> Colour Contrast Checker](https://webaim.org/resources/contrastchecker/)
 Visual|Toggle CSS|Toggle all CSS (found in external stylesheets, `<style>` blocks, or inline `style` attributes) on or off on the page

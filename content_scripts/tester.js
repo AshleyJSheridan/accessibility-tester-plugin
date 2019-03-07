@@ -18,6 +18,22 @@
 		}
 	});
 	
+	self.test_tabindex = function() {
+		let tabindexElements = document.querySelectorAll("*[tabindex]");
+		let failedTabindexElements = [];
+		
+		for(let i=0; i<tabindexElements.length; i++) {
+			let node = tabindexElements[i];
+			let tabindexValue = parseInt(node.getAttribute("tabindex"));
+			
+			if(tabindexValue > 0) {
+				failedTabindexElements.push(node);
+			}
+		}
+		
+		showFailures(failedTabindexElements, "Elements should not have positive tabindex values");
+	}
+	
 	self.test_event_handlers = function() {
 		let handlerList = ["click", "dblclick", "mousedown", "mouseup", "mousewheel", "change", "toggle", "keydown", "keyup", "keypress", "input"];
 		let selectors = handlerList.map(function(handlerName){
