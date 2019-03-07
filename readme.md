@@ -51,6 +51,7 @@ Layout|Event handlers|Looks for elements not interactive by default for any inli
 Layout|Tabindex|Checks for elements with positive `tabindex` values, which cause issues for people relying on assistive tech
 Visual|Image descriptions|Check that all images have `alt` text, or are within `<figure>` elements that contain a `<figcaption>`. This will also throw a warning if large images are found with empty `alt` text, which could indicate a development error
 Visual|Colour contrast|Look at all text and check the colour contrast ratio is at least 3:1 for large text or 4.5:1 for regular text, as detailed in the [Web <abbr title="Accessibility in Mind">AIM</abbr> Colour Contrast Checker](https://webaim.org/resources/contrastchecker/)
+Visual|Font size|Checks for text below the minimum threshold of `14px`
 Visual|Toggle CSS|Toggle all CSS (found in external stylesheets, `<style>` blocks, or inline `style` attributes) on or off on the page
 Visual|Video captions|Ensure that `<video>` tags contain at least one set of captions of the type `captions`, `subtitles`, or `descriptions`
 Visual|Autoplay video|Check for any `<video>` elements with the `autoplay` attribute set

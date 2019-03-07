@@ -147,6 +147,28 @@
 			setStylesdisabledStatus(true);
 		}
 	}
+	
+	self.test_min_font_size = function() {
+		let walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null, false);
+		let textNode;
+		let minimumPixelFontSize = 14;
+		let failedTextSizeNodes = [];
+		
+		while(textNode = walker.nextNode()) {
+			let textContent = getTextContentFromTextNode(textNode);
+			
+			if(textContent.length > 0) {
+				let computedStyles = getComputerStylesForTextNode(textNode);
+				let fontSize = parseInt(getPropertyFromComputedStyles(computedStyles, "font-size"));
+				
+				if(fontSize < minimumPixelFontSize) {
+					failedTextSizeNodes.push(textNode);
+				}
+			}
+		}
+		
+		showFailures(failedTextSizeNodes, `Text falls below the minimum pixel threshold of ${minimumPixelFontSize}`);
+	}
 
 	self.test_colour_contrast = function() {
 		let walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null, false);
