@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+	</head>
+	<body>
+		<section>
+			<h1>Fail Tests</h1>
+			
+			<div onclick="return false;">click handler</div>
+			<div ondblclick="return false;">double click handler</div>
+			<div onmousedown="return false;">mouse down handler</div>
+			<div onmouseup="return false;">mouse up handler</div>
+			<div onmousewheel="return false;">mouse wheel handler</div>
+			<div onchange="return false;">change handler</div>
+			<div ontoggle="return false;">toggle handler</div>
+			<div onkeydown="return false;">key down handler</div>
+			<div onkeyup="return false;">key up handler</div>
+			<div onkeypress="return false;">key press handler</div>
+			<div oninput="return false;">input handler</div>
+		</section>
+		<section>
+			<h1>Passing Tests</h1>
+			
+			<div onclick="return false;" role="button">click handler</div>
+			<div ondblclick="return false;" role="checkbox">double click handler</div>
+			<div onmousedown="return false;" role="link">mouse down handler</div>
+			<div onclick="return false;" role="menu">click handler</div>
+			<div onmouseup="return false;" role="menuitemcheckbox">mouse up handler</div>
+			<div onmousewheel="return false;" role="menuitem">mouse wheel handler</div>
+			<div onchange="return false;" role="menuitemradio">change handler</div>
+			<div ontoggle="return false;" role="option">toggle handler</div>
+			<div onkeydown="return false;" role="radio">key down handler</div>
+			<div onkeyup="return false;" role="scrollbar">key up handler</div>
+			<div onkeypress="return false;" role="slider">key press handler</div>
+			<div onclick="return false;" role="spinbutton">click handler</div>
+			<div oninput="return false;" role="switch">input handler</div>
+			
+			<input type="text" onclick="return false;"/>
+			<textarea ondblclick="return false;"></textarea>
+			<select onmousedown="return false;">
+				<option onmousewheel="return false;">option 1</option>
+				<option onmousewheel="return false;">option 2</option>
+			</select>
+			<button onkeypress="return false;">button</button>
+			<a href="#" onkeydown="return false;">link</a>
+			<video onkeyup="return false;"></video>
+			<audio onkeyup="return false;"></audio>
+		</section>
+		
+	</body>
+</html>

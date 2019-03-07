@@ -18,6 +18,32 @@
 		}
 	});
 	
+	self.test_event_handlers = function() {
+		let handlerList = ["click", "dblclick", "mousedown", "mouseup", "mousewheel", "change", "toggle", "keydown", "keyup", "keypress", "input"];
+		let selectors = handlerList.map(function(handlerName){
+			return `*[on${handlerName}]`;
+		});
+		let inlineEventElements = document.querySelectorAll(selectors.join(", "));
+		let interactiveRoles = ["button", "checkbox", "link", "menu", "menuitem", "menuitemcheckbox", "menuitemradio", "option", "radio", "scrollbar", "slider", "spinbutton", "switch"];
+		let interactiveElements = ["input", "textarea", "select", "option", "button", "a", "video", "audio"];
+		let failingElements = [];
+		
+		for(let i=0; i<inlineEventElements.length; i++) {
+			let node = inlineEventElements[i];
+			let nodeRole = node.getAttribute("role");
+			let nodeName = node.nodeName.toLowerCase();
+			
+			let isElementInteractiveByDefault = interactiveElements.includes(nodeName);
+			let isRoleNonInteractive = (nodeRole === null || !interactiveRoles.includes(nodeRole));
+			
+			if(!isElementInteractiveByDefault && isRoleNonInteractive) {
+				failingElements.push(node);
+			}
+		}
+		
+		showFailures(failingElements, "Non interactive elements like <div> should have an interactive role value assigned them if they have event handlers");
+	}
+	
 	self.test_table_appearance = function() {
 		let tables = document.getElementsByTagName("table");
 		let failingTables = [];
