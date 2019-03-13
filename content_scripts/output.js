@@ -1,5 +1,6 @@
 function showFailures(testName, failureList, failureMessage, successOnEmpty = true) {
 	if(failureList.length) {
+		console.error(testName);
 		console.error(failureMessage);
 		console.table(failureList);
 	}
@@ -10,15 +11,18 @@ function showFailures(testName, failureList, failureMessage, successOnEmpty = tr
 }
 
 function showSuccess(testName) {
+	console.info(testName);
 	console.info("No problems found");
 }
 
 function showSingleFailure(testName, failureMessage) {
+	console.error(testName);
 	console.error(failureMessage);
 }
 
 function showWarnings(testName, warningList, warningMessage) {
 	if(warningList.length) {
+		console.warn(testName);
 		console.warn(warningMessage);
 		console.table(warningList);
 	}
