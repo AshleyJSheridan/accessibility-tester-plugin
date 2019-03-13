@@ -31,7 +31,7 @@
 			}
 		}
 		
-		showFailures(failedTabindexElements, "Elements should not have positive tabindex values");
+		showFailures("Tabindex", failedTabindexElements, "Elements should not have positive tabindex values");
 	}
 	
 	self.test_event_handlers = function() {
@@ -57,7 +57,7 @@
 			}
 		}
 		
-		showFailures(failingElements, "Non interactive elements like <div> should have an interactive role value assigned them if they have event handlers");
+		showFailures("Event handlers", failingElements, "Non interactive elements like <div> should have an interactive role value assigned them if they have event handlers");
 	}
 	
 	self.test_table_appearance = function() {
@@ -99,10 +99,10 @@
 			}
 		}
 		
-		showFailures(failingTables, "Tables should have role=\"table\" if CSS changes their display value");
-		showFailures(failingRows, "Table rows should have role=\"row\" if CSS changes their display value");
-		showFailures(failingHeadings, "Table headings should have role=\"columnheader\" or role=\"rowheader\" if CSS changes their display value");
-		showFailures(failingCells, "Table cells should have role=\"cell\" if CSS changes their display value");
+		showFailures("Table appearance", failingTables, "Tables should have role=\"table\" if CSS changes their display value");
+		showFailures("Table appearance", failingRows, "Table rows should have role=\"row\" if CSS changes their display value");
+		showFailures("Table appearance", failingHeadings, "Table headings should have role=\"columnheader\" or role=\"rowheader\" if CSS changes their display value");
+		showFailures("Table appearance", failingCells, "Table cells should have role=\"cell\" if CSS changes their display value");
 	}
 	
 	self.test_disable_styles = function() {
@@ -167,7 +167,7 @@
 			}
 		}
 		
-		showFailures(failedTextSizeNodes, `Text falls below the minimum pixel threshold of ${minimumPixelFontSize}`);
+		showFailures("Font size", failedTextSizeNodes, `Text falls below the minimum pixel threshold of ${minimumPixelFontSize}`);
 	}
 
 	self.test_colour_contrast = function() {
@@ -193,7 +193,7 @@
 			}
 		}
 		
-		showFailures(failedTextContrast, "Text colour doesn't contrast enough with background");
+		showFailures("Colour contrast", failedTextContrast, "Text colour doesn't contrast enough with background");
 	}
 
 	self.test_blur = function() {
@@ -301,20 +301,20 @@
 			}
 		}
 		
-		showFailures(unlabeledInputs, "Input elements don't have associated labels");
-		showFailures(hiddenLabels, "Input labels should not be hidden with display: none; or visibility: hidden;");
+		showFailures("Form element labels", unlabeledInputs, "Input elements don't have associated labels");
+		showFailures("Form element labels", hiddenLabels, "Input labels should not be hidden with display: none; or visibility: hidden;");
 	}
 	
 	self.test_bold_tags = function() {
 		let boldTags = document.querySelectorAll("b");
 		
-		showFailures(Array.from(boldTags), "Bold (<b>) tags used, <strong> is more semantic");
+		showFailures("Bold tags", Array.from(boldTags), "Bold (<b>) tags used, <strong> is more semantic");
 	}
 	
 	self.test_italic_tags = function() {
 		let italicTags = document.querySelectorAll("i");
 		
-		showFailures(Array.from(italicTags), "Italic (<i>) tags used, <em> is more semantic");
+		showFailures("Italic tags", Array.from(italicTags), "Italic (<i>) tags used, <em> is more semantic");
 	}
 	
 	self.test_heading_levels = function() {
@@ -323,7 +323,7 @@
 		let lastHeadingLevel = 0;
 		
 		if(headings.length === 0) {
-			showSingleFailure("Page has no headings");
+			showSingleFailure("Heading levels", "Page has no headings");
 		}
 		
 		for(i=0; i<headings.length; i++) {
@@ -331,7 +331,7 @@
 			let currentHeadingLevel = getHeadingLevel(heading);
 			
 			if(i === 0 && currentHeadingLevel !== 1) {
-				showFailures([heading], "First heading in page is not <h1>");
+				showFailures("Heading levels", [heading], "First heading in page is not <h1>");
 			}
 
 			if(currentHeadingLevel > lastHeadingLevel + 1) {
@@ -342,31 +342,31 @@
 			lastHeadingLevel = currentHeadingLevel;
 		}
 		
-		showFailures(failedHeadings, "Headings are not following a logical hierarchy");
+		showFailures("Heading levels", failedHeadings, "Headings are not following a logical hierarchy");
 	}
 	
 	self.test_audio = function() {
 		let failedAudios = getMultimediaElementsWithoutTextTracks('audio');
 		
-		showFailures(failedAudios, "Some audio elements have no tracks marked as captions, subtitles, or a description");
+		showFailures("Audio captions", failedAudios, "Some audio elements have no tracks marked as captions, subtitles, or a description");
 	}
 	
 	self.test_audio_autoplay = function() {
 		let failedAudios = getMultimediaElementsWithAutoplay('audio');
 		
-		showFailures(failedAudios, "Audio elements should not auto-play");
+		showFailures("Autoplay audio", failedAudios, "Audio elements should not auto-play");
 	}
 
 	self.test_videos = function() {
 		let failedVideos = getMultimediaElementsWithoutTextTracks('video');
 		
-		showFailures(failedVideos, "Some videos have no tracks marked as captions, subtitles, or a description");
+		showFailures("Video captions", failedVideos, "Some videos have no tracks marked as captions, subtitles, or a description");
 	}
 	
 	self.test_videos_autoplay = function() {
 		let failedVideos = getMultimediaElementsWithAutoplay('video');
 		
-		showFailures(failedVideos, "Videos should not auto-play");
+		showFailures("Autoplay video", failedVideos, "Videos should not auto-play");
 	}
 	
 	self.test_images = function() {
@@ -392,8 +392,8 @@
 			}
 		}
 		
-		showFailures(failedImages, "Some images have no alt text and were not found with a corresponding <figcaption>", false);
-		showWarnings(warnImages, `Some images have empty alt text and are larger than the threshold of ${emptyAltDimensionThreshold} pixels`);
+		showFailures("Image descriptions", failedImages, "Some images have no alt text and were not found with a corresponding <figcaption>", false);
+		showWarnings("Image descriptions", warnImages, `Some images have empty alt text and are larger than the threshold of ${emptyAltDimensionThreshold} pixels`);
 		
 		if(!failedImages.length && !warnImages.length) {
 			showSuccess("No problems found");
