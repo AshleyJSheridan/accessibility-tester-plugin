@@ -5,6 +5,7 @@
 		"sourceMap": true
 	},
 	"include": [
-		"popup/*"
+		"popup/*",
+		"content_scripts"
 	]
 }
