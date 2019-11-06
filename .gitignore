@@ -1,3 +1,5 @@
 /nbproject/private/
 .sass-cache
 **/*.js.map
+/content_scripts/*.js
+/popup/*.js
