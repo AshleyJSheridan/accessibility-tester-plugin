@@ -7,7 +7,10 @@ While it's in the initial stages of development, it will only be available as a 
 ## Installation
 
 * Check out the repository locally
-* Open Firefox and point to `about:debug` in the address bar
+* From the root folder of the project, run the following:
+ * `sass popup/scss/choose_test.scss popup/css/choose_test.css --style compressed` to generate the CSS
+ * `tsc` to compile the Typescript into JS
+* Open Firefox and point to `about:debugging#addons` in the address bar
 * Click on the `Load Temporary Add-on...` button and navigate to the project directory and load the `manifest.json` file there
 
 ## Using the Add-on
