@@ -3,3 +3,5 @@
 **/*.js.map
 /content_scripts/*.js
 /popup/*.js
+/popup/css/*.css
+/popup/css/*.css.map
