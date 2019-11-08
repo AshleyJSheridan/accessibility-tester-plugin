@@ -76,7 +76,7 @@ function getMultimediaElementsWithoutTextTracks(mediaType) {
 	let multimediaElements = document.querySelectorAll(mediaType);
 	let failingElements = [];
 
-	for(i=0; i<multimediaElements.length; i++) {
+	for(let i=0; i<multimediaElements.length; i++) {
 		let multimediaElement = multimediaElements[i];
 		let track = multimediaElement.querySelectorAll("track[kind=subtitles], track[kind=captions], track[kind=descriptions]");
 
@@ -129,7 +129,7 @@ function getDescendantOfType(parentNode, type) {
 	if(!parentNode)
 		return false;
 
-	node = parentNode.querySelector(type);
+	let node = parentNode.querySelector(type);
 	if(node !== null)
 		return node;
 
@@ -140,7 +140,7 @@ function getDescendantsOfType(parentNode, type) {
 	if(!parentNode)
 		return false;
 	
-	nodes = parentNode.querySelectorAll(type);
+	let nodes = parentNode.querySelectorAll(type);
 	if(nodes !== null)
 		return nodes;
 

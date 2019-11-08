@@ -32,6 +32,8 @@ function reportExecuteScriptError(error) {
 	console.error(`Failed to execute content script: ${error.message}`);
 }
 
+let browser = browser;
+
 browser.tabs.executeScript({file: "/content_scripts/tester.js"})
 	.then(listenForClicks)
 	.catch(reportExecuteScriptError);

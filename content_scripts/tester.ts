@@ -111,7 +111,7 @@
 		let blockStyles = document.getElementsByTagName("style");
 		let stylesRemoved = getStylesRemoved();
 
-		for(i=0; i<externalStylesheets.length; i++) {
+		for(let i=0; i<externalStylesheets.length; i++) {
 			let externalStylesheet = externalStylesheets[i];
 			
 			if(stylesRemoved) {
@@ -121,7 +121,7 @@
 			}
 		}
 		
-		for(i=0; i<inlineStyles.length; i++) {
+		for(let i=0; i<inlineStyles.length; i++) {
 			let inlineStyleElement = inlineStyles[i];
 			
 			if(stylesRemoved) {
@@ -131,7 +131,7 @@
 			}
 		}
 		
-		for(i=0; i<blockStyles.length; i++) {
+		for(let i=0; i<blockStyles.length; i++) {
 			let blockStyleElement = blockStyles[i];
 			
 			if(stylesRemoved) {
@@ -281,7 +281,7 @@
 		let unlabeledInputs = [];
 		let hiddenLabels = [];
 		
-		for(i=0; i<inputs.length; i++) {
+		for(let i=0; i<inputs.length; i++) {
 			let input = inputs[i];
 			
 			let parentLabel = getParentOfType(input, "label");
@@ -326,7 +326,7 @@
 			showSingleFailure("Page has no headings");
 		}
 		
-		for(i=0; i<headings.length; i++) {
+		for(let i=0; i<headings.length; i++) {
 			let heading = headings[i];
 			let currentHeadingLevel = getHeadingLevel(heading);
 			
@@ -375,7 +375,7 @@
 		let warnImages = [];
 		let emptyAltDimensionThreshold = 100;
 		
-		for(i=0; i<images.length; i++) {
+		for(let i=0; i<images.length; i++) {
 			let image = images[i];
 			let altText = image.getAttribute("alt");
 			
