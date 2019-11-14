@@ -1,3 +1,33 @@
+interface Window {
+	stylesRemoved: any,
+	hasRun: any,
+	test_tabindex: any,
+	test_event_handlers: any,
+	test_table_appearance: any,
+	test_disable_styles: any,
+	test_min_font_size: any,
+	test_colour_contrast: any,
+	test_blur: any,
+	test_colourblind_protanopia: any,
+	test_colourblind_protanomaly: any,
+	test_colourblind_deuteranopia: any,
+	test_colourblind_deutranomaly: any,
+	test_colourblind_tritanopia: any,
+	test_colourblind_tritanomaly: any,
+	test_colourblind_achromatopsia: any,
+	test_colourblind_achromatomaly: any,
+	test_reset_filters: any,
+	test_form_element_labels: any,
+	test_bold_tags: any,
+	test_italic_tags: any,
+	test_heading_levels: any,
+	test_audio: any,
+	test_audio_autoplay: any,
+	test_videos: any,
+	test_videos_autoplay: any;
+	test_images: any
+}
+
 function addBodyFilter(filterName, filterOptions) {
 	let existingFilters = document.body.style.filter;
 

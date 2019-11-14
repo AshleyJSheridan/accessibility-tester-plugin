@@ -1,7 +1,7 @@
 function listenForClicks() {
 	document.addEventListener("click", (e) => {
-		
-		if(e.target.classList.contains("test")) {
+
+		if((<HTMLElement>e.target).classList.contains("test")) {
 			browser.tabs.query({active: true, currentWindow: true})
 				.then(runTest)
 				.catch(reportError);
@@ -32,8 +32,6 @@ function reportExecuteScriptError(error) {
 	console.error(`Failed to execute content script: ${error.message}`);
 }
 
-let browser = browser;
-
-browser.tabs.executeScript({file: "/content_scripts/tester.js"})
+browser.tabs.executeScript(null, {file: "/content_scripts/tester.js"})
 	.then(listenForClicks)
 	.catch(reportExecuteScriptError);
