@@ -26,7 +26,7 @@ function listenForClicks() {
 }
 
 
-function reportExecuteScriptError(error) {
+function reportExecuteScriptError(error: any) {
 	document.querySelector("#popup-content").classList.add("hidden");
 	document.querySelector("#error-content").classList.remove("hidden");
 	console.error(`Failed to execute content script: ${error.message}`);

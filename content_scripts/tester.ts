@@ -4,11 +4,11 @@
 	}
 	window.hasRun = true;
 
-	function runTest(testName) {
+	function runTest(testName: string) {
 		let testFunction = `test_${testName}`;
 
-		if(typeof window[testFunction] === "function") {
-			window[testFunction]();
+		if(typeof window[<string>testFunction] === "function") {
+			window[<string>testFunction]();
 		}
 	}
 

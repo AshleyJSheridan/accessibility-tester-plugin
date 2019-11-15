@@ -28,7 +28,7 @@ interface Window {
 	test_images: Function,
 }
 
-function addBodyFilter(filterName, filterOptions) {
+function addBodyFilter(filterName: string, filterOptions: any) {
 	let existingFilters = document.body.style.filter;
 
 	if(!existingFilters.includes(filterName)) {
@@ -38,7 +38,7 @@ function addBodyFilter(filterName, filterOptions) {
 	}
 }
 
-function removeBodyFilter(filterName) {
+function removeBodyFilter(filterName: string) {
 	let existingFilters = document.body.style.filter;
 
 	if(existingFilters.includes(filterName)) {
@@ -49,7 +49,7 @@ function removeBodyFilter(filterName) {
 	}
 }
 
-function addHtmlWithIdIfNotPresent(elementId, html) {
+function addHtmlWithIdIfNotPresent(elementId: string, html: string) {
 	let elementExists = document.getElementById(elementId);
 
 	if(!elementExists) {
@@ -57,7 +57,7 @@ function addHtmlWithIdIfNotPresent(elementId, html) {
 	}
 }
 
-function applySvgColorMatrixFilter(matrix, filterName) {
+function applySvgColorMatrixFilter(matrix: string, filterName: string) {
 	let filterId = `filter_${filterName}`;
 	let svgFilterHtml = `<svg height="0">
 		<filter id="${filterId}">
@@ -70,7 +70,7 @@ function applySvgColorMatrixFilter(matrix, filterName) {
 	addBodyFilter("url", `#${filterId}`);
 }
 
-function showFailures(failureList, failureMessage, successOnEmpty = true) {
+function showFailures(failureList: Element[]|HTMLElement[], failureMessage: string, successOnEmpty: boolean = true) {
 	if(failureList.length) {
 		console.error(failureMessage);
 		console.table(failureList);
@@ -81,28 +81,28 @@ function showFailures(failureList, failureMessage, successOnEmpty = true) {
 	}
 }
 
-function showSuccess(message) {
+function showSuccess(message: string) {
 	console.info(message);
 }
 
-function showSingleFailure(failureMessage) {
+function showSingleFailure(failureMessage: string) {
 	console.error(failureMessage);
 }
 
-function showWarnings(warningList, warningMessage) {
+function showWarnings(warningList: Element[]|HTMLElement[], warningMessage: string) {
 	if(warningList.length) {
 		console.warn(warningMessage);
 		console.table(warningList);
 	}
 }
 
-function getHeadingLevel(heading) {
+function getHeadingLevel(heading: Element) {
 	let headingString = heading.tagName.toLowerCase();
 
 	return parseInt(headingString.substring(1));
 }
 
-function getMultimediaElementsWithoutTextTracks(mediaType) {
+function getMultimediaElementsWithoutTextTracks(mediaType: string) {
 	let multimediaElements = document.querySelectorAll(mediaType);
 	let failingElements = [];
 
@@ -118,13 +118,13 @@ function getMultimediaElementsWithoutTextTracks(mediaType) {
 	return failingElements;
 }
 
-function getMultimediaElementsWithAutoplay(mediaType) {
+function getMultimediaElementsWithAutoplay(mediaType: string) {
 	let multimediaElements = document.querySelectorAll(`${mediaType}[autoplay]`);
 
 	return Array.from(multimediaElements);
 }
 
-function getElementWithAttributeValue(elementType, attribute, attributeValue) {
+function getElementWithAttributeValue(elementType: string, attribute: string, attributeValue: string) {
 	if(attributeValue === null)
 		return false;
 
@@ -133,7 +133,7 @@ function getElementWithAttributeValue(elementType, attribute, attributeValue) {
 	return element;
 }
 
-function getCousinOfType(node, parentType, childType) {
+function getCousinOfType(node: Element, parentType: string, childType: string) {
 	let parentNode = getParentOfType(node, parentType);
 	let childNode = getDescendantOfType(parentNode, childType);
 
@@ -143,41 +143,41 @@ function getCousinOfType(node, parentType, childType) {
 	return false;
 }
 
-function getParentOfType(childNode, type) {
-	var node = childNode.parentNode;
+function getParentOfType(childNode: any, type: string) {
+	var node = <HTMLElement> childNode.parentNode;
 
 	while (node !== null && node.tagName !== undefined) {
 		if (node.tagName.toLowerCase() === type) {
 			return node;
 		}
-		node = node.parentNode;
+		node = <HTMLElement> node.parentNode;
 	}
 	return false;
 }
 
-function getDescendantOfType(parentNode, type) {
+function getDescendantOfType(parentNode: any, type: string) {
 	if(!parentNode)
 		return false;
 
-	let node = parentNode.querySelector(type);
+	let node = <HTMLElement> parentNode.querySelector(type);
 	if(node !== null)
 		return node;
 
 	return false;
 }
 
-function getDescendantsOfType(parentNode, type) {
+function getDescendantsOfType(parentNode: any, type: string) {
 	if(!parentNode)
 		return false;
 	
-	let nodes = parentNode.querySelectorAll(type);
+	let nodes = <HTMLElement> parentNode.querySelectorAll(type);
 	if(nodes !== null)
 		return nodes;
 
 	return false;
 }
 
-function doesTextContrast(fontSize, fontWeight, contrast) {
+function doesTextContrast(fontSize: number, fontWeight: number, contrast: number) {
 	let minContrastLevel = 4.5;
 	let largeTextContrastLevel = 3;
 	let largeTextSize = 24;
@@ -191,7 +191,7 @@ function doesTextContrast(fontSize, fontWeight, contrast) {
 	return passedMinContrast || passedLargeTextMinContrast;
 }
 
-function getColourFromComputed(computedStyles, colourProperty) {
+function getColourFromComputed(computedStyles: CSSStyleDeclaration, colourProperty: string) {
 	let colour = getPropertyFromComputedStyles(computedStyles, colourProperty);
 	let colourComponents;
 
@@ -209,39 +209,39 @@ function getColourFromComputed(computedStyles, colourProperty) {
 	};
 }
 
-function convertRGBAtoRGB(r, g, b, alpha) {
+function convertRGBAtoRGB(r: number, g: number, b: number, alpha: number) {
 	let defaultBackground = 255; // 255 for each RBG component
 
 	return {
-		r: (1 - alpha) * 255 + alpha * r,
-		g: (1 - alpha) * 255 + alpha * g,
-		b: (1 - alpha) * 255 + alpha * b
+		r: (1 - alpha) * defaultBackground + alpha * r,
+		g: (1 - alpha) * defaultBackground + alpha * g,
+		b: (1 - alpha) * defaultBackground + alpha * b
 	};
 }
 
-function getPropertyFromComputedStyles(computedStyles, property) {
+function getPropertyFromComputedStyles(computedStyles: any, property: string) {
 	return computedStyles.getPropertyValue(property);
 }
 
-function getTextContentFromTextNode(textNode) {
+function getTextContentFromTextNode(textNode: HTMLElement) {
 	return textNode.textContent.trim();
 }
 
-function getComputerStylesForTextNode(textNode) {
+function getComputerStylesForTextNode(textNode: HTMLElement) {
 	return getComputedStylesForNode(textNode.parentNode);
 }
 
-function getComputedStylesForNode(node) {
+function getComputedStylesForNode(node: any) {
 	return window.getComputedStyle(node);
 }
 
-function getComputedStyleForNode(node, property) {
+function getComputedStyleForNode(node: Element|boolean, property: string) {
 	let computedStyles = getComputedStylesForNode(node);
 	
 	return getPropertyFromComputedStyles(computedStyles, property);
 }
 
-function hasDescdendantsOfTypeWithoutGivenComputedStyle(node, descendantSelector, computedStyleProperty, matchingValues) {
+function hasDescdendantsOfTypeWithoutGivenComputedStyle(node: Element, descendantSelector: string, computedStyleProperty: string, matchingValues: string[]) {
 	let children = node.querySelectorAll(descendantSelector);
 
 	for(let i=0; i<children.length; i++) {
@@ -255,14 +255,14 @@ function hasDescdendantsOfTypeWithoutGivenComputedStyle(node, descendantSelector
 	return false;
 }
 
-function getColourContrast(rgb1, rgb2) {
+function getColourContrast(rgb1: any, rgb2: any) {
 	let luminance1 = getColourLuminance(rgb1.r, rgb1.g, rgb1.b);
 	let luminance2 = getColourLuminance(rgb2.r, rgb2.g, rgb2.b);
 
 	return luminance1 / luminance2;
 }
 
-function getColourLuminance(r, g, b) {
+function getColourLuminance(r: number, g: number, b: number) {
 	var a = [r, g, b].map(function (v) {
 		v /= 255;
 		return v <= .03928
@@ -277,43 +277,43 @@ function getStylesRemoved() {
 	return !!window.stylesRemoved;
 }
 
-function setStylesdisabledStatus(status) {
+function setStylesdisabledStatus(status: boolean) {
 	window.stylesRemoved = status;
 }
 
-function disableExternalStyles(externalStylesheet) {
+function disableExternalStyles(externalStylesheet: Element) {
 	let href = externalStylesheet.getAttribute("href");
 
 	externalStylesheet.setAttribute("data-disabled-href", href);
 	externalStylesheet.removeAttribute("href");
 }
 
-function enableExternalStyles(externalStylesheet) {
+function enableExternalStyles(externalStylesheet: any) {
 	let href = externalStylesheet.dataset.disabledHref;
 
 	externalStylesheet.setAttribute("href", href);
 }
 
-function enableInlineStyle(element) {
+function enableInlineStyle(element: any) {
 	let style = element.dataset.disabledStyle;
 	
 	element.setAttribute("style", style);
 }
 
-function disableInlineStyle(element) {
+function disableInlineStyle(element: Element) {
 	let style = element.getAttribute("style");
 	
 	element.setAttribute("data-disabled-style", style);
 	element.setAttribute("style", "");
 }
 
-function enableBlockStyle(element) {
+function enableBlockStyle(element: any) {
 	let style = atob(element.dataset.disabledBlockStyle);
 	
 	element.innerHTML = style;
 }
 
-function disableBlockStyle(element) {
+function disableBlockStyle(element: Element) {
 	let style = btoa(element.innerHTML);
 
 	element.setAttribute("data-disabled-block-style", style);
