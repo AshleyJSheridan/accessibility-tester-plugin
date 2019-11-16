@@ -5,3 +5,4 @@
 /popup/*.js
 /popup/css/*.css
 /popup/css/*.css.map
+/node_modules

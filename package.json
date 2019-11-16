@@ -1,0 +1,25 @@
+{
+  "name": "accessibility-tester-plugin",
+  "version": "1.0.0",
+  "description": "Accessibility testing helper plugin for Firefox",
+  "main": "popup/index.html",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AshleyJSheridan/accessibility-tester-plugin.git"
+  },
+  "author": "Ashley Sheridan",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/AshleyJSheridan/accessibility-tester-plugin/issues"
+  },
+  "homepage": "https://github.com/AshleyJSheridan/accessibility-tester-plugin#readme",
+  "devDependencies": {
+    "web-ext-types": "^3.2.1"
+  }
+}

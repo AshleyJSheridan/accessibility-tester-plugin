@@ -1,5 +1,5 @@
 {
-	"description": "some description",
+	"description": "Accessibility testing helper plugin for Firefox",
 	"manifest_version": 2,
 	"name": "Site Accessibility Tester",
 	"version": "1.0",
